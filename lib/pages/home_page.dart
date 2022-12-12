@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_smart_home_ui/util/smart_deviece_box.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,6 +20,12 @@ class _HomePageState extends State<HomePage> {
     ['Smart TV', "lib/icons/smart-tv.png", true],
     ['Smart Fan', "lib/icons/fan.png", true],
   ];
+  //power button switched
+  void powerSwitchChanged(bool value, int index) {
+    setState(() {
+      mySmartDevieces[index][2] = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,21 +86,23 @@ class _HomePageState extends State<HomePage> {
             //Smart devices + grid
             Padding(
               padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-              child: Text('Smart Devieces'),
+              child: const Text('Smart Devieces'),
             ),
             Expanded(
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
+                  childAspectRatio: 1 / 1.3,
                 ),
                 itemCount: mySmartDevieces
                     .length, //długość zmiennej(listy) mySmartDevieces
+                padding: const EdgeInsets.all(25),
                 itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      color: Colors.amber,
-                    ),
+                  return SmartDevieceBox(
+                    SmartDevieceName: mySmartDevieces[index][0],
+                    iconPath: mySmartDevieces[index][1],
+                    powerON: mySmartDevieces[index][2],
+                    onChanged: (value) => powerSwitchChanged(value, index),
                   );
                 },
               ),
