@@ -1,6 +1,9 @@
 # modern_smart_home_ui
 
-A new Flutter project.
+Modern smart home UI Flutter demo project.
+
+![SmartHomeUI](https://user-images.githubusercontent.com/116440070/206947911-3936a20d-6abe-4ffa-8244-625a2bd63905.png)
+
 
 ## Getting Started
 
